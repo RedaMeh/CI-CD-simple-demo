@@ -24,6 +24,8 @@ jobs:
           PYTHONPATH: ${{ github.workspace }}
       - name: Run hidden tests
         run: pytest hidden_tests -v
+        env:
+          PYTHONPATH: ${{ github.workspace }}
       - name: Generate grade summary
         run: |
           echo "Public tests: PASS" > grading_summary.txt
