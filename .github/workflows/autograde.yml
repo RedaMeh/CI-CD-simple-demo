@@ -22,3 +22,15 @@ jobs:
         run: pytest tests_public -v
         env:
           PYTHONPATH: ${{ github.workspace }}
+      - name: Run hidden tests
+        run: pytest hidden_tests -v
+      - name: Generate grade summary
+        run: |
+          echo "Public tests: PASS" > grading_summary.txt
+          echo "Hidden tests: PASS" >> grading_summary.txt
+
+      - name: Upload grading summary
+        uses: actions/upload-artifact@v4
+        with:
+          name: grading-summary
+          path: grading_summary.txt
